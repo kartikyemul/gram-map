@@ -1,0 +1,136 @@
+.overview-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+}
+
+.map-placeholder {
+  position: relative;
+  min-height: 260px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: #e9efec;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 40px 40px;
+  overflow: hidden;
+}
+
+.map-pin {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.map-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.map-label {
+  font-size: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+.map-note {
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.village-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.village-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.village-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.village-taluka {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.village-plots {
+  font-size: 13px;
+  color: var(--accent);
+}
+
+.sub-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 24px 0 8px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.plot-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.plot-table th,
+.plot-table td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.plot-table th {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.badge {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.badge-verified {
+  background: #e1eee8;
+  color: #2f5a49;
+}
+
+.badge-pending {
+  background: #f5ecd6;
+  color: #7a5c14;
+}
+
+.badge-disputed {
+  background: #f3dede;
+  color: #8a3a3a;
+}
+
+@media (max-width: 800px) {
+  .overview-grid {
+    grid-template-columns: 1fr;
+  }
+}

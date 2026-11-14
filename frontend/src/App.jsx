@@ -2,7 +2,8 @@ import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import SummaryCard from "./components/SummaryCard";
 import RecentActivity from "./components/RecentActivity";
-import { summaryCards, recentActivity } from "./data/sampleData";
+import VillageOverview from "./components/VillageOverview";
+import { summaryCards, recentActivity, villages, plots } from "./data/sampleData";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
               <SummaryCard key={card.id} label={card.label} value={card.value} note={card.note} />
             ))}
           </section>
+          <VillageOverview villages={villages} plots={plots} />
           <RecentActivity items={recentActivity} />
         </div>
       </div>
