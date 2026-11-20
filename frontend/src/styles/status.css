@@ -1,0 +1,21 @@
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.status {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 10px;
+}
+
+.status-online {
+  background: #e1eee8;
+  color: #2f5a49;
+}
+
+.status-offline {
+  background: #f5ecd6;
+  color: #7a5c14;
+}

@@ -1,16 +1,37 @@
+import { useEffect, useState } from "react";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import SummaryCard from "./components/SummaryCard";
 import RecentActivity from "./components/RecentActivity";
 import VillageOverview from "./components/VillageOverview";
-import { summaryCards, recentActivity, villages, plots } from "./data/sampleData";
+import { getData } from "./api";
+import {
+  summaryCards,
+  recentActivity,
+  villages as sampleVillages,
+  plots as samplePlots,
+} from "./data/sampleData";
 
 function App() {
+  const [villages, setVillages] = useState(sampleVillages);
+  const [plots, setPlots] = useState(samplePlots);
+  const [online, setOnline] = useState(false);
+
+  useEffect(() => {
+    Promise.all([getData("/villages"), getData("/plots")])
+      .then(([villageData, plotData]) => {
+        setVillages(villageData);
+        setPlots(plotData);
+        setOnline(true);
+      })
+      .catch(() => setOnline(false));
+  }, []);
+
   return (
     <div className="app">
       <Sidebar />
       <div className="main">
-        <Header title="Dashboard" />
+        <Header title="Dashboard" online={online} />
         <div className="content">
           <section className="summary-grid">
             {summaryCards.map((card) => (
