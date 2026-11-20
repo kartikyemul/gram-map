@@ -1,4 +1,4 @@
-import MapPlaceholder from "./MapPlaceholder";
+import MapView from "./MapView";
 import VillageList from "./VillageList";
 import PlotTable from "./PlotTable";
 
@@ -7,7 +7,7 @@ function VillageOverview({ villages, plots }) {
     <div className="card">
       <h2 className="card-title">Village and Plot Overview</h2>
       <div className="overview-grid">
-        <MapPlaceholder villages={villages} />
+        <MapView villages={villages} />
         <VillageList villages={villages} />
       </div>
       <h3 className="sub-title">Recent Plots</h3>

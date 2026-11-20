@@ -4,51 +4,6 @@
   gap: 16px;
 }
 
-.map-placeholder {
-  position: relative;
-  min-height: 260px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background-color: #e9efec;
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 40px 40px;
-  overflow: hidden;
-}
-
-.map-pin {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.map-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--accent);
-  border: 2px solid #fff;
-  box-shadow: 0 0 0 1px var(--accent);
-}
-
-.map-label {
-  font-size: 12px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 2px 6px;
-}
-
-.map-note {
-  position: absolute;
-  right: 10px;
-  bottom: 8px;
-  font-size: 12px;
-  color: var(--muted);
-}
-
 .village-list {
   list-style: none;
   margin: 0;

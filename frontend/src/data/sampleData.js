@@ -13,10 +13,10 @@ export const recentActivity = [
 ];
 
 export const villages = [
-  { id: 1, name: "Wadgaon", taluka: "North Solapur", plots: 312, x: 28, y: 30 },
-  { id: 2, name: "Kasegaon", taluka: "Pandharpur", plots: 245, x: 62, y: 22 },
-  { id: 3, name: "Nimgaon", taluka: "Barshi", plots: 198, x: 45, y: 60 },
-  { id: 4, name: "Pimpalgaon", taluka: "Barshi", plots: 276, x: 75, y: 68 },
+  { id: 1, name: "Wadgaon", taluka: "North Solapur", plots: 312, lat: 17.74, lng: 75.88 },
+  { id: 2, name: "Kasegaon", taluka: "Pandharpur", plots: 245, lat: 17.7, lng: 75.4 },
+  { id: 3, name: "Nimgaon", taluka: "Barshi", plots: 198, lat: 18.15, lng: 75.65 },
+  { id: 4, name: "Pimpalgaon", taluka: "Barshi", plots: 276, lat: 18.25, lng: 75.75 },
 ];
 
 export const plots = [
