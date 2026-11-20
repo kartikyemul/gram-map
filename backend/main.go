@@ -29,25 +29,43 @@ func enableCORS(next http.Handler) http.Handler {
 	})
 }
 
-func healthHandler(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodGet {
-		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
-		return
+// getOnly rejects any request that is not GET.
+func getOnly(handler http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodGet {
+			http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+			return
+		}
+		handler(w, r)
 	}
+}
 
-	response := HealthResponse{
+func writeJSON(w http.ResponseWriter, data any) {
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(data)
+}
+
+func healthHandler(w http.ResponseWriter, r *http.Request) {
+	writeJSON(w, HealthResponse{
 		Status:  "ok",
 		Service: "grammap-backend",
 		Time:    time.Now().Format(time.RFC3339),
-	}
+	})
+}
 
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(response)
+func villagesHandler(w http.ResponseWriter, r *http.Request) {
+	writeJSON(w, villages)
+}
+
+func plotsHandler(w http.ResponseWriter, r *http.Request) {
+	writeJSON(w, plots)
 }
 
 func main() {
 	mux := http.NewServeMux()
-	mux.HandleFunc("/api/health", healthHandler)
+	mux.HandleFunc("/api/health", getOnly(healthHandler))
+	mux.HandleFunc("/api/villages", getOnly(villagesHandler))
+	mux.HandleFunc("/api/plots", getOnly(plotsHandler))
 
 	addr := ":8080"
 	log.Println("GramMap backend running on http://localhost" + addr + "/api/health")
