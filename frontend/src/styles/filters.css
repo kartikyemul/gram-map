@@ -1,0 +1,12 @@
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.empty-note {
+  font-size: 14px;
+  color: var(--muted);
+  padding: 12px 0;
+}

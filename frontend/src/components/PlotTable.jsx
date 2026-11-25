@@ -1,4 +1,8 @@
 function PlotTable({ plots }) {
+  if (plots.length === 0) {
+    return <p className="empty-note">No plots match the filters.</p>;
+  }
+
   return (
     <div className="table-wrap">
       <table className="plot-table">
