@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import SummaryCard from "./components/SummaryCard";
 import RecentActivity from "./components/RecentActivity";
 import VillageOverview from "./components/VillageOverview";
-import { getData } from "./api";
+import { getData, postData } from "./api";
 import {
   summaryCards,
   recentActivity,
@@ -27,6 +27,11 @@ function App() {
       .catch(() => setOnline(false));
   }, []);
 
+  async function addPlot(newPlot) {
+    const created = await postData("/plots", newPlot);
+    setPlots((current) => [created, ...current]);
+  }
+
   return (
     <div className="app">
       <Sidebar />
@@ -38,7 +43,7 @@ function App() {
               <SummaryCard key={card.id} label={card.label} value={card.value} note={card.note} />
             ))}
           </section>
-          <VillageOverview villages={villages} plots={plots} />
+          <VillageOverview villages={villages} plots={plots} onAddPlot={addPlot} />
           <RecentActivity items={recentActivity} />
         </div>
       </div>

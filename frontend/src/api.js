@@ -7,3 +7,15 @@ export async function getData(path) {
   }
   return response.json();
 }
+
+export async function postData(path, body) {
+  const response = await fetch(API_URL + path, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  if (!response.ok) {
+    throw new Error("Request failed: " + response.status);
+  }
+  return response.json();
+}

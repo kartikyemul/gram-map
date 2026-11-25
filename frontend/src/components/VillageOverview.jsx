@@ -3,8 +3,9 @@ import MapView from "./MapView";
 import VillageList from "./VillageList";
 import PlotFilters from "./PlotFilters";
 import PlotTable from "./PlotTable";
+import AddPlotForm from "./AddPlotForm";
 
-function VillageOverview({ villages, plots }) {
+function VillageOverview({ villages, plots, onAddPlot }) {
   const [filters, setFilters] = useState({ search: "", village: "All", status: "All" });
 
   const visiblePlots = plots.filter((plot) => {
@@ -26,6 +27,8 @@ function VillageOverview({ villages, plots }) {
       <h3 className="sub-title">Plots</h3>
       <PlotFilters filters={filters} villages={villages} onChange={setFilters} />
       <PlotTable plots={visiblePlots} />
+      <h3 className="sub-title">Add Plot</h3>
+      <AddPlotForm villages={villages} onAdd={onAddPlot} />
     </div>
   );
 }
