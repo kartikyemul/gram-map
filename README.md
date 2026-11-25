@@ -1,6 +1,6 @@
 # GramMap
 
-A GIS-inspired web dashboard for rural land governance. Stage 2 adds a Go API for villages and plots, a live OpenStreetMap map, and connects the React dashboard to the backend.
+A GIS-inspired web dashboard for rural land governance. Stage 3 adds plot search and filters, and a form to register new plots through the Go API.
 
 ## Tech stack
 
@@ -26,6 +26,12 @@ cd backend
 go run .
 ```
 
+Run the tests:
+
+```
+go test
+```
+
 ### Frontend
 
 ```
@@ -36,7 +42,9 @@ npm run dev
 
 Open http://localhost:5173
 
-If the backend is not running, the dashboard falls back to built-in sample data and shows a "Sample data" badge. With the backend running, the badge reads "API connected".
+If the backend is not running, the dashboard falls back to built-in sample data and shows a "Sample data" badge. With the backend running, the badge reads "API connected" and new plots can be added.
+
+Plots are stored in memory, so they reset when the backend restarts. A database comes in a later stage.
 
 ## API
 
@@ -44,7 +52,8 @@ If the backend is not running, the dashboard falls back to built-in sample data 
 | --- | --- |
 | GET /api/health | Server status |
 | GET /api/villages | Village list with coordinates |
-| GET /api/plots | Land plot list |
+| GET /api/plots | Land plot list, newest first |
+| POST /api/plots | Add a plot. JSON body: village, area, owner. New plots start as Pending |
 
 ## Project structure
 
@@ -53,16 +62,19 @@ GramMap/
 ├── frontend/
 │   └── src/
 │       ├── components/   Sidebar, Header, SummaryCard, RecentActivity,
-│       │                 VillageOverview, MapView, VillageList, PlotTable
+│       │                 VillageOverview, MapView, VillageList,
+│       │                 PlotFilters, PlotTable, AddPlotForm
 │       ├── data/         sampleData.js (fallback data)
-│       ├── styles/       base.css, layout.css, dashboard.css,
-│       │                 overview.css, map.css, status.css
-│       ├── api.js        fetch helper for the backend
+│       ├── styles/       base, layout, dashboard, overview, map,
+│       │                 status, filters, addplot
+│       ├── api.js        fetch helpers for the backend
 │       ├── App.jsx
 │       └── main.jsx
 ├── backend/
 │   ├── main.go           server, CORS, routes
 │   ├── villages.go       village and plot data
+│   ├── plots.go          GET and POST /api/plots
+│   ├── plots_test.go     handler tests
 │   └── go.mod
 └── README.md
 ```
