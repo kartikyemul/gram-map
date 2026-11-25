@@ -17,7 +17,7 @@ type HealthResponse struct {
 func enableCORS(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:5173")
-		w.Header().Set("Access-Control-Allow-Methods", "GET, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
 		if r.Method == http.MethodOptions {
@@ -57,15 +57,11 @@ func villagesHandler(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, villages)
 }
 
-func plotsHandler(w http.ResponseWriter, r *http.Request) {
-	writeJSON(w, plots)
-}
-
 func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/api/health", getOnly(healthHandler))
 	mux.HandleFunc("/api/villages", getOnly(villagesHandler))
-	mux.HandleFunc("/api/plots", getOnly(plotsHandler))
+	mux.HandleFunc("/api/plots", plotsHandler)
 
 	addr := ":8080"
 	log.Println("GramMap backend running on http://localhost" + addr + "/api/health")
