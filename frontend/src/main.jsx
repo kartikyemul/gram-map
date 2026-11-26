@@ -5,6 +5,7 @@ import "./styles/layout.css";
 import "./styles/dashboard.css";
 import "./styles/overview.css";
 import "./styles/status.css";
+import "./styles/pages.css";
 import App from "./App.jsx";
 
 createRoot(document.getElementById("root")).render(

@@ -1,0 +1,13 @@
+a.profile {
+  text-decoration: none;
+  color: inherit;
+}
+
+a.profile:hover .profile-name {
+  color: var(--accent);
+}
+
+.placeholder {
+  text-align: center;
+  padding: 48px 20px;
+}

@@ -1,18 +1,15 @@
 import { useEffect, useState } from "react";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
-import SummaryCard from "./components/SummaryCard";
-import RecentActivity from "./components/RecentActivity";
-import VillageOverview from "./components/VillageOverview";
+import ErrorBoundary from "./components/ErrorBoundary";
+import DashboardPage from "./pages/DashboardPage";
+import PlaceholderPage from "./pages/PlaceholderPage";
 import { getData, postData } from "./api";
-import {
-  summaryCards,
-  recentActivity,
-  villages as sampleVillages,
-  plots as samplePlots,
-} from "./data/sampleData";
+import { villages as sampleVillages, plots as samplePlots } from "./data/sampleData";
+import { useRoute, getTitle } from "./navigation";
 
 function App() {
+  const route = useRoute();
   const [villages, setVillages] = useState(sampleVillages);
   const [plots, setPlots] = useState(samplePlots);
   const [online, setOnline] = useState(false);
@@ -32,19 +29,20 @@ function App() {
     setPlots((current) => [created, ...current]);
   }
 
+  function renderPage() {
+    if (route === "dashboard") {
+      return <DashboardPage villages={villages} plots={plots} onAddPlot={addPlot} />;
+    }
+    return <PlaceholderPage title={getTitle(route)} />;
+  }
+
   return (
     <div className="app">
-      <Sidebar />
+      <Sidebar route={route} />
       <div className="main">
-        <Header title="Dashboard" online={online} />
+        <Header title={getTitle(route)} online={online} />
         <div className="content">
-          <section className="summary-grid">
-            {summaryCards.map((card) => (
-              <SummaryCard key={card.id} label={card.label} value={card.value} note={card.note} />
-            ))}
-          </section>
-          <VillageOverview villages={villages} plots={plots} onAddPlot={addPlot} />
-          <RecentActivity items={recentActivity} />
+          <ErrorBoundary key={route}>{renderPage()}</ErrorBoundary>
         </div>
       </div>
     </div>

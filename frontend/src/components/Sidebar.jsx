@@ -1,6 +1,6 @@
-const links = ["Dashboard", "Villages", "Land Plots", "Requests", "Reports"];
+import { navItems } from "../navigation";
 
-function Sidebar() {
+function Sidebar({ route }) {
   return (
     <aside className="sidebar">
       <div className="brand">
@@ -8,9 +8,13 @@ function Sidebar() {
         <span className="brand-name">GramMap</span>
       </div>
       <nav className="nav">
-        {links.map((link, index) => (
-          <a key={link} href="#" className={index === 0 ? "nav-link active" : "nav-link"}>
-            {link}
+        {navItems.map((item) => (
+          <a
+            key={item.route}
+            href={"#/" + item.route}
+            className={item.route === route ? "nav-link active" : "nav-link"}
+          >
+            {item.label}
           </a>
         ))}
       </nav>

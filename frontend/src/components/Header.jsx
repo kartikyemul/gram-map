@@ -1,3 +1,5 @@
+import { profile } from "../data/profile";
+
 function Header({ title, online }) {
   return (
     <header className="header">
@@ -6,13 +8,13 @@ function Header({ title, online }) {
         <span className={online ? "status status-online" : "status status-offline"}>
           {online ? "API connected" : "Sample data"}
         </span>
-        <div className="profile">
-          <div className="avatar">AP</div>
+        <a href="#/profile" className="profile">
+          <div className="avatar">{profile.initials}</div>
           <div>
-            <div className="profile-name">Anita Patil</div>
-            <div className="profile-role">Gram Sevak</div>
+            <div className="profile-name">{profile.name}</div>
+            <div className="profile-role">{profile.role}</div>
           </div>
-        </div>
+        </a>
       </div>
     </header>
   );
