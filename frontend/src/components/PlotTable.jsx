@@ -1,6 +1,6 @@
 function PlotTable({ plots }) {
   if (plots.length === 0) {
-    return <p className="empty-note">No plots match the filters.</p>;
+    return <p className="empty-note">No plots to show.</p>;
   }
 
   return (

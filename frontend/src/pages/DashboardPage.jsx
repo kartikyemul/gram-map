@@ -3,7 +3,7 @@ import VillageOverview from "../components/VillageOverview";
 import RecentActivity from "../components/RecentActivity";
 import { summaryCards, recentActivity } from "../data/sampleData";
 
-function DashboardPage({ villages, plots, onAddPlot }) {
+function DashboardPage({ villages, plots }) {
   return (
     <>
       <section className="summary-grid">
@@ -11,7 +11,7 @@ function DashboardPage({ villages, plots, onAddPlot }) {
           <SummaryCard key={card.id} label={card.label} value={card.value} note={card.note} />
         ))}
       </section>
-      <VillageOverview villages={villages} plots={plots} onAddPlot={onAddPlot} />
+      <VillageOverview villages={villages} plots={plots} />
       <RecentActivity items={recentActivity} />
     </>
   );
