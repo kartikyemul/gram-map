@@ -3,6 +3,7 @@ import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import ErrorBoundary from "./components/ErrorBoundary";
 import DashboardPage from "./pages/DashboardPage";
+import VillagesPage from "./pages/VillagesPage";
 import PlotsPage from "./pages/PlotsPage";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import { getData, postData } from "./api";
@@ -33,6 +34,9 @@ function App() {
   function renderPage() {
     if (route === "dashboard") {
       return <DashboardPage villages={villages} plots={plots} />;
+    }
+    if (route === "villages") {
+      return <VillagesPage villages={villages} plots={plots} />;
     }
     if (route === "plots") {
       return <PlotsPage villages={villages} plots={plots} onAddPlot={addPlot} />;
